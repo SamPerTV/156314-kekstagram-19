@@ -1,8 +1,8 @@
 'use strict';
 //  Константы
 var COUNT_PHOTO = 25;
-var DESCRIPTION = ['Новый день', 'Игра воображения', 'Песня осеннего пламени'];
-var MESSAGE_PHOTOS = ['Всё отлично!', 'В целом всё неплохо. Но не всё.Когда вы делаете фотографию, хорошо бы убирать палец из кадра.', 'Вконце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+var DESCRIPTIONS = ['Новый день', 'Игра воображения', 'Песня осеннего пламени'];
+var MESSAGE = ['Всё отлично!', 'В целом всё неплохо. Но не всё.Когда вы делаете фотографию, хорошо бы убирать палец из кадра.', 'Вконце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 var USER_NAMES = ['Василий', 'Геннадий', 'Алексей', 'Иван'];
 var photoList = document.querySelector('.pictures');
 /**
@@ -15,11 +15,12 @@ var photoList = document.querySelector('.pictures');
 function getRandomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 /**
  * Возвращает случайный элемент массива
  *
  * @param {array} array - Массив
- * @return {array} -  случайный элемент массива
+ * @return {any} -  случайный элемент массива
  */
 var getRandomArrayElement = function (array) {
   var rand = Math.floor(Math.random() * array.length);
@@ -33,12 +34,12 @@ var getRandomArrayElement = function (array) {
 var createComment = function () {
   return {
     avatar: 'img/avatar-' + getRandomInRange(0, 6) + '.svg',
-    message: getRandomArrayElement(MESSAGE_PHOTOS),
+    message: getRandomArrayElement(MESSAGE),
     name: getRandomArrayElement(USER_NAMES)
   };
 };
 /**
- * Дает случаный набор комменатриев к photo
+ * Дает случайный набор комменатриев к photo
  *
  * @return {array} - массив
  */
@@ -57,7 +58,7 @@ var photos = [];
 for (var i = 1; i <= COUNT_PHOTO; i++) {
   var photo = {
     url: 'photos/' + i + '.jpg',
-    description: getRandomArrayElement(DESCRIPTION),
+    description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomInRange(15, 200),
     comments: createComments()
   };
@@ -75,9 +76,9 @@ var photoTemplateElement = document.querySelector('#picture')
  */
 var createPhotoTemplate = function (photoElement) {
   var photoTemplate = photoTemplateElement.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = photoElement.url;
-  photoElement.querySelector('.picture__likes').textContent = photoElement.likes;
-  photoElement.querySelector('.picture__comments').textContent = photoElement.comments.length;
+  photoTemplate.querySelector('.picture__img').src = photoElement.url;
+  photoTemplate.querySelector('.picture__likes').textContent = photoElement.likes;
+  photoTemplate.querySelector('.picture__comments').textContent = photoElement.comments.length;
   return photoTemplate;
 };
 
