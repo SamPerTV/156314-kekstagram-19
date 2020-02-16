@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Малугин](https://up.htmlacademy.ru/javascript/19/user/156314).
-* Наставник: `Неизвестно`.
+* Наставник: [Артем Макаров](https://up.htmlacademy.ru/javascript/19/user/429879).
 
 ---
 
